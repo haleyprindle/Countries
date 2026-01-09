@@ -33,6 +33,28 @@ public class Main
     File file = new File("/workspaces/Countries/workspace/countries-data.csv");
     
     //create a scanner and a loop to read from the file until you've read everything.
+    Scanner scanner = new Scanner(file.in);
+    Country[] newCountry = new Country[10];
+
+int i = 0;
+while (scan.hasNext())
+{
+    String line = scan.nextLine();
+    // Split each line into its attributes name, type1, etc.
+    String[] data = line.split(",");
+    String name = data[1];
+    String capital = data[2];
+    String language = data[3];
+    String imageFile = data[4];
+
+    // Create a Pokemon object from the split data
+    Country c = new Country(name, capital, language, imageFile);
+    // Save p in the array
+    newCountry[i] = c;
+
+    i++;
+}
+
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
