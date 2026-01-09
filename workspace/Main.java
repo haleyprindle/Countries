@@ -29,31 +29,47 @@ public class Main
   /* loadCountries() reads in the data from the countries-data.csv file and fills in the countryArray with data. You need to add the loop that reads in the country data into the array. */
   public void loadCountries() 
   {
-    // Open the data file. Please note that the file structure we're working with requires the full file path as shown here unlike what you saw in runestone where the file name was sufficient.
-    File file = new File("/workspaces/Countries/workspace/countries-data.csv");
+    try {
+            // Create a File object
+             File file = new File("/workspaces/Countries/workspace/countries-data.csv");
+            // Create a Scanner object for the file
+            Scanner scanner = new Scanner(file);
+            
+
+            // Read the file line by line while there are more lines and the array has space
+            while (scanner.hasNextLine() && index < countryArray.length) {
+                String line = scanner.nextLine();
+                // Split the line into an array of strings, assuming a comma delimiter
+                String[] data = line.split(",");
+                    String name = data[0];
+        String capital = data[1];
+        String language = data[2];
+        String imageFile = data[3];
+         Country c = new Country(name, capital, language, imageFile);
+   
+      countryArray[index] = c;
+
+
+                // Store the relevant part of the split data into the main array
+                // This example assumes we want the first part (index 0) of the split line
+               
+                    index++;
+                }
+            
+
+            // Close the scanner after reading the file
+            scanner.close();
+            System.out.println("Successfully read " + index + " entries into the array.");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred: The file was not found.");
+            e.printStackTrace();
+        }
+      
     
-    //create a scanner and a loop to read from the file until you've read everything.
-    Scanner scanner = new Scanner(file.in);
-    Country[] newCountry = new Country[10];
 
-int i = 0;
-while (scan.hasNext())
-{
-    String line = scan.nextLine();
-    // Split each line into its attributes name, type1, etc.
-    String[] data = line.split(",");
-    String name = data[1];
-    String capital = data[2];
-    String language = data[3];
-    String imageFile = data[4];
 
-    // Create a Pokemon object from the split data
-    Country c = new Country(name, capital, language, imageFile);
-    // Save p in the array
-    newCountry[i] = c;
 
-    i++;
-}
 
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
@@ -63,22 +79,32 @@ while (scan.hasNext())
     
   }
 
+  
+
+
   /* showCountry() will show the image associated with the current country. It should get the country at index from the countryArray. It should use its get method to get its image file name and use the code below to put the image in the GUI.
   */
   public void showCountry() {
     // Get the country at index from countryArray
-    
+      
+    Country c = countryArray[index];
+    // Call its get methods
     // Use its get method to get the its image file name and save it into imagefile variable below instead of worldmap.jpg.
-    String imagefile = "worldmap.jpg";
+    String imageFile = c.getImageFile();
     // Use the following code to create an new Image Icon and put it into the GUI
-    img = new ImageIcon("/workspaces/Countries/workspace/"+imagefile);
+    img = new ImageIcon("/workspaces/Countries/workspace/"+imageFile);
     imageLabel.setIcon(img);
+    
   }
   
   /* nextButton should increment index. If the index is greater than 9, reset it back to 0. Clear the outputLabel to empty string using setText, and call showCountry();*/
   public void nextButtonClick()
-  {
-    
+ {
+  if (index > 9)
+    index=0;
+     userInput.setText("");
+     showCountry();
+     outputLabel.setText("What is this country?");
   }
   
   /* reviewButton should get the country at index from the countryArray, call its toString() method and save the result, print it out with System.out.println and as an argument to outputLabel.setText( text to print out ); */
