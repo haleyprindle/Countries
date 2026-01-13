@@ -6,7 +6,13 @@ public class Country
     private String language;
     private String imageFile;
 
-    
+   
+    public Country (){
+    this.name = "";
+    this.capital = "";
+    this.language = "";
+    this.imageFile = "";
+  }
   // add constructors
   public Country (String countryName, String countryCapital, String countryLanguage, String countryImageFile){
     this.name = countryName;
@@ -14,6 +20,10 @@ public class Country
     this.language = countryLanguage;
     this.imageFile = countryImageFile;
   }
+
+   
+
+
   // Write accessor/get methods for each instance variable that returns it.
 public String getName()
 {

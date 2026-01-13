@@ -41,22 +41,20 @@ public class Main
                 String line = scanner.nextLine();
                 // Split the line into an array of strings, assuming a comma delimiter
                 String[] data = line.split(",");
-                    String name = data[0];
-        String capital = data[1];
-        String language = data[2];
-        String imageFile = data[3];
-         Country c = new Country(name, capital, language, imageFile);
+                String name = data[0];
+                String capital = data[1];
+                String language = data[2];
+                String imageFile = data[3];
+                Country c = new Country(name, capital, language, imageFile);
    
-      countryArray[index] = c;
-
-
+                countryArray[index] = c;
                 // Store the relevant part of the split data into the main array
                 // This example assumes we want the first part (index 0) of the split line
                
-                    index++;
+                index++;
                 }
             
-
+                index = 0;
             // Close the scanner after reading the file
             scanner.close();
             System.out.println("Successfully read " + index + " entries into the array.");
@@ -104,13 +102,16 @@ public class Main
     index=0;
      userInput.setText("");
      showCountry();
-     outputLabel.setText("What is this country?");
+    
   }
   
   /* reviewButton should get the country at index from the countryArray, call its toString() method and save the result, print it out with System.out.println and as an argument to outputLabel.setText( text to print out ); */
   public void reviewButtonClick()
   {
-     
+    Country c = countryArray[index];
+    String countryString = c.toString();
+    System.out.println(countryString);
+    outputLabel.setText( countryString );
   }
 
   /* quizButton should clear the outputLabel (outputLabel.setText to empty string), get the country at index from countryArray, print out a question about it like What country is this? and/or What's this country's capital?. Get the user's answer using scan.nextLine() and check if it is equal to the country's data using its get methods and print out correct or incorrect.
@@ -118,8 +119,21 @@ public class Main
   public void quizButtonClick()
   {
     Scanner scan = new Scanner(System.in); 
+    outputLabel.setText("");
+    Country c = countryArray[index];
+
+
     
+    outputLabel.setText("What country is this?");
     
+    String input = scan.nextLine();
+    if(input.equals(c.getName()))
+    {
+       outputLabel.setText("correct");
+    }
+     outputLabel.setText("incorrect");
+    
+    scan.close();
     
   }
 
