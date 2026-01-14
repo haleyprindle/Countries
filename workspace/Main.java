@@ -54,7 +54,7 @@ public class Main
                 index++;
                 }
             
-                index = 0;
+                
             // Close the scanner after reading the file
             scanner.close();
             System.out.println("Successfully read " + index + " entries into the array.");
@@ -68,7 +68,7 @@ public class Main
 
 
 
-
+    index = 0;
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
@@ -101,6 +101,7 @@ public class Main
   if (index > 9)
     index=0;
      userInput.setText("");
+     Country 
      showCountry();
     
   }
@@ -126,11 +127,12 @@ public class Main
     
     outputLabel.setText("What country is this?");
     
-    String input = scan.nextLine();
-    if(input.equals(c.getName()))
+    
+    if( userInput.getText().equals(c.getName()))
     {
        outputLabel.setText("correct");
     }
+    else
      outputLabel.setText("incorrect");
     
     scan.close();
