@@ -49,7 +49,7 @@ public class Main
    
                 countryArray[index] = c;
                 // Store the relevant part of the split data into the main array
-                // This example assumes we want the first part (index 0) of the split line
+               
                
                 index++;
                 }
@@ -92,17 +92,20 @@ public class Main
     // Use the following code to create an new Image Icon and put it into the GUI
     img = new ImageIcon("/workspaces/Countries/workspace/"+imageFile);
     imageLabel.setIcon(img);
+    outputLabel.setText("What country is this?");
     
   }
   
   /* nextButton should increment index. If the index is greater than 9, reset it back to 0. Clear the outputLabel to empty string using setText, and call showCountry();*/
   public void nextButtonClick()
  {
-  if (index > 9)
+  index++;
+  if (index > 9){
     index=0;
-     userInput.setText("");
-     Country 
-     showCountry();
+  }
+    outputLabel.setText("");  
+    userInput.setText("");  
+    showCountry();
     
   }
   
@@ -125,15 +128,15 @@ public class Main
 
 
     
-    outputLabel.setText("What country is this?");
+    
     
     
     if( userInput.getText().equals(c.getName()))
     {
-       outputLabel.setText("correct");
+       outputLabel.setText("Correct");
     }
     else
-     outputLabel.setText("incorrect");
+     outputLabel.setText("Incorrect");
     
     scan.close();
     
@@ -146,7 +149,7 @@ public class Main
   /* The Main() constructor is finished and will construct the GUI */
 public Main() {
     jFrame.setLayout(new FlowLayout());
-    jFrame.setSize(500, 360);
+    jFrame.setSize(600, 360);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // buttons at the top
         JButton reviewButton = new JButton("Review");
